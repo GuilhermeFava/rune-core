@@ -2,15 +2,31 @@
   "name": "@rune-engine/rune-core",
   "version": "0.1.0-private-preview",
   "private": true,
+  "license": "MIT",
   "description": "Open-source preparation package for Rune's academic wind and solar simulation core.",
   "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./wind": "./src/wind.ts",
+    "./site": "./src/site.ts"
+  },
   "sideEffects": false,
   "files": [
     "README.md",
     "SCOPE.md",
     "NOTICE.md",
-    "src"
+    "src",
+    "LICENSE"
   ],
+  "devDependencies": {
+    "typescript": "~5.8.2",
+    "vitest": "^4.0.16"
+  },
   "keywords": [
     "renewables",
     "wind",

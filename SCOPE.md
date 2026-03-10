@@ -8,15 +8,18 @@ These files are the strongest candidates because they implement physics or deter
 
 - [`frontend/lib/physics/aep.ts`](../../frontend/lib/physics/aep.ts)
 - [`frontend/lib/physics/environment.ts`](../../frontend/lib/physics/environment.ts)
-- [`frontend/lib/physics/wake_models.ts`](../../frontend/lib/physics/wake_models.ts)
+- [`frontend/lib/physics/layout.ts`](../../frontend/lib/physics/layout.ts)
 - [`frontend/lib/physics/terrain.ts`](../../frontend/lib/physics/terrain.ts)
-- [`frontend/lib/physics/noiseConstraint.ts`](../../frontend/lib/physics/noiseConstraint.ts)
-- [`frontend/lib/physics/solar.ts`](../../frontend/lib/physics/solar.ts)
+- [`frontend/lib/physics/wake_models.ts`](../../frontend/lib/physics/wake_models.ts)
+
+These are the files now copied into the current private-preview package boundary under `packages/rune-core/src`.
 
 ## Maybe later
 
 These areas may become public after additional cleanup, naming normalization, and dependency review:
 
+- [`frontend/lib/physics/noiseConstraint.ts`](../../frontend/lib/physics/noiseConstraint.ts)
+- [`frontend/lib/physics/solar.ts`](../../frontend/lib/physics/solar.ts)
 - [`frontend/lib/physics/layout.ts`](../../frontend/lib/physics/layout.ts)
 - [`frontend/lib/physics/micrositing.ts`](../../frontend/lib/physics/micrositing.ts)
 - [`frontend/lib/physics/optimization.ts`](../../frontend/lib/physics/optimization.ts)
