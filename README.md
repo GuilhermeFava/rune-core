@@ -73,6 +73,14 @@ npm test
 npm run build
 ```
 
+## CI and release
+
+The repository ships with:
+
+- CI on push and pull request
+- a publish workflow triggered by tags like `v0.1.0`
+- npm publishing through `NPM_TOKEN`
+
 ## Status
 
 This is an `alpha` public extraction. The code surface is already source-isolated, but the package API may still tighten as more examples and validations are added.
