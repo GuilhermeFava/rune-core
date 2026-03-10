@@ -1,28 +1,56 @@
 {
   "name": "@rune-engine/rune-core",
-  "version": "0.1.0-private-preview",
-  "private": true,
+  "version": "0.1.0-alpha.0",
+  "private": false,
   "license": "MIT",
-  "description": "Open-source preparation package for Rune's academic wind and solar simulation core.",
+  "description": "Transparent wind and renewable engineering core extracted from Rune.",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeFava/rune-core.git"
+  },
+  "homepage": "https://github.com/GuilhermeFava/rune-core#readme",
+  "bugs": {
+    "url": "https://github.com/GuilhermeFava/rune-core/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "build": "tsc -p tsconfig.build.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "clean": "rm -rf dist"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./wind": "./src/wind.ts",
-    "./site": "./src/site.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./wind": {
+      "types": "./dist/wind.d.ts",
+      "import": "./dist/wind.js"
+    },
+    "./site": {
+      "types": "./dist/site.d.ts",
+      "import": "./dist/site.js"
+    }
   },
   "sideEffects": false,
   "files": [
     "README.md",
     "SCOPE.md",
     "NOTICE.md",
-    "src",
-    "LICENSE"
+    "RELEASE.md",
+    "LICENSE",
+    "dist"
   ],
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
     "typescript": "~5.8.2",
     "vitest": "^4.0.16"

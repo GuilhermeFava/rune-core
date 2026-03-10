@@ -1,72 +1,88 @@
-# Rune Core
+# rune-core
 
-`rune-core` is the future open-source physics nucleus of Rune.
+`rune-core` is the open-source engineering nucleus extracted from Rune.
 
-It is being prepared as a public technical layer that exposes the academically grounded parts of the platform without exposing the hosted SaaS stack.
+It packages the transparent part of the stack: deterministic wind-layout logic, wake models, AEP utilities, terrain-aware helpers, and environmental corrections grounded in public methodology.
+
+The hosted Rune platform remains separate. Auth, billing, workflows, provider routing, project storage, and premium reports are not part of this repository.
 
 ## Why this exists
 
-Rune has two different value layers:
+Renewable engineering software should be easier to inspect.
 
-- `rune-core`: transparent engineering logic, validation-minded utilities, wake and yield models based on public literature.
-- Rune Platform: UX, workflows, project storage, hosted datasets, access control, premium reports, integrations, and orchestration.
+`rune-core` exists to give engineers and technical teams a clean layer they can:
 
-This split lets Rune use open source as:
-
-- a technical trust signal for engineers and investors
-- a developer acquisition channel
-- a validation surface that can be audited publicly
-- a marketing wedge without giving away the full product
-
-## Planned public scope
-
-The initial public package is intended to include:
-
-- wake model implementations derived from public literature
-- AEP and sector aggregation utilities
-- air-density and environmental correction helpers
-- deterministic benchmark fixtures and validation-facing examples
-- selected terrain and constraint helpers that do not depend on restricted datasets or external SaaS APIs
-
-## Explicitly out of scope
-
-The first public release is not intended to include:
-
-- hosted API orchestration
-- auth, billing, subscriptions, waitlist, or admin flows
-- third-party tiles, geocoding, paid weather routing, or commercial provider wrappers
-- project storage, SaaS UI, or report-generation workflows
-- internal growth, analytics, CRM, and operational tooling
-
-## Status
-
-This folder is a preparation area inside the private application repository.
-
-It is not the published package yet, but it now contains its own source copy of the initial public surface instead of only re-exporting app-internal modules.
+- read and audit
+- test independently
+- benchmark against their own references
+- use as an entry point into the full Rune platform
 
 ## Current preview surface
 
-The current preview exports:
+The current public surface includes:
 
-- wind layout helpers
-- wake models
-- AEP and sector aggregation utilities
-- density correction helpers
+- layout generation helpers
+- wake models (`jensen`, `bastankhah`, `gch`)
+- AEP and wind-sector aggregation utilities
+- density and environmental correction helpers
 - terrain speed-up helpers
 
-These exports are now source-isolated inside `packages/rune-core/src`, while Rune finalizes packaging, public examples, and repository split.
+## What is explicitly out of scope
 
-## Intended package license
+This repository does not include:
 
-The initial public package is planned under the MIT license.
+- hosted API orchestration
+- auth, billing, subscriptions, waitlist, or admin flows
+- project storage or SaaS UI
+- commercial provider wrappers
+- report-generation workflows
+- product analytics and growth tooling
 
-That license applies to `rune-core`, not to the whole hosted application repository.
+## Install
 
-Before public release, Rune should still complete:
+This repository is publish-ready, but if you are consuming it directly from source today:
 
-1. dependency and provenance scrub
-2. license selection for the package itself
-3. public examples and API stabilization
-4. repository split or automated subtree sync from the private monorepo
+```bash
+npm install
+npm run build
+```
 
-See [`SCOPE.md`](./SCOPE.md), [`NOTICE.md`](./NOTICE.md), [`RELEASE.md`](./RELEASE.md), and [`../../docs/open-source/launch-checklist.md`](../../docs/open-source/launch-checklist.md).
+## Quick example
+
+```ts
+import {
+  calculateAirDensity,
+  calculateAnnualAEP,
+  generateLayout,
+  generatePowerCurve
+} from '@rune-engine/rune-core';
+
+const airDensity = calculateAirDensity(15, 120);
+const powerCurve = generatePowerCurve(6000, 170, 3, 25, airDensity, 9.5, 2.1, 0.92);
+const layout = generateLayout(6, 170, 6, 4, 'GRID', 15);
+```
+
+A more complete example lives in [`examples/basic-aep.ts`](./examples/basic-aep.ts).
+
+## Local development
+
+```bash
+npm install
+npm run typecheck
+npm test
+npm run build
+```
+
+## Status
+
+This is an `alpha` public extraction. The code surface is already source-isolated, but the package API may still tighten as more examples and validations are added.
+
+## License
+
+`rune-core` is released under the MIT license. See [`LICENSE`](./LICENSE).
+
+## Further reading
+
+- [`SCOPE.md`](./SCOPE.md)
+- [`NOTICE.md`](./NOTICE.md)
+- [`RELEASE.md`](./RELEASE.md)
