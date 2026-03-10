@@ -43,8 +43,10 @@
   "sideEffects": false,
   "files": [
     "README.md",
+    "CHANGELOG.md",
     "SCOPE.md",
     "NOTICE.md",
+    "FIRST_RELEASE.md",
     "RELEASE.md",
     "LICENSE",
     "dist"

@@ -79,7 +79,7 @@ The repository ships with:
 
 - CI on push and pull request
 - a publish workflow triggered by tags like `v0.1.0`
-- npm publishing through `NPM_TOKEN`
+- trusted publishing support for GitHub Actions
 
 ## Status
 
