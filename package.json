@@ -1,0 +1,23 @@
+{
+  "name": "@rune-engine/rune-core",
+  "version": "0.1.0-private-preview",
+  "private": true,
+  "description": "Open-source preparation package for Rune's academic wind and solar simulation core.",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "README.md",
+    "SCOPE.md",
+    "NOTICE.md",
+    "src"
+  ],
+  "keywords": [
+    "renewables",
+    "wind",
+    "solar",
+    "aep",
+    "wake-model",
+    "energy-yield",
+    "bankability"
+  ]
+}
