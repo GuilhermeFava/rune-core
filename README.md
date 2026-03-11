@@ -6,6 +6,12 @@ It packages the transparent part of the stack: deterministic wind-layout logic, 
 
 The hosted Rune platform remains separate. Auth, billing, workflows, provider routing, project storage, and premium reports are not part of this repository.
 
+## Hosted beta
+
+The hosted Rune beta is live at [runerenewables.com](https://runerenewables.com).
+
+Use the platform when you want the full workflow shell: project setup, climate workflows, collaboration, and the broader product experience around the open engineering core.
+
 ## Why this exists
 
 Renewable engineering software should be easier to inspect.
@@ -83,7 +89,7 @@ The repository ships with:
 
 ## Status
 
-This is an `alpha` public extraction. The code surface is already source-isolated, but the package API may still tighten as more examples and validations are added.
+This is the first public `beta` cut of `rune-core`. The code surface is source-isolated and CI-backed, but the API may still tighten as more examples and validations are added.
 
 ## License
 

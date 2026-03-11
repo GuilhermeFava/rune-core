@@ -1,6 +1,6 @@
 # First Release Plan
 
-Target: `v0.1.0`
+Target: `v0.1.0-beta.1`
 
 ## Recommended path
 
@@ -28,8 +28,8 @@ Why:
 2. Tag the release:
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.1.0-beta.1
+git push origin v0.1.0-beta.1
 ```
 
 3. GitHub Actions publishes the package
