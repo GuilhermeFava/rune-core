@@ -55,7 +55,7 @@ npm install @runerenewables/rune-core@beta
 Or pin the exact beta:
 
 ```bash
-npm install @runerenewables/rune-core@0.1.0-beta.2
+npm install @runerenewables/rune-core@0.1.0-beta.3
 ```
 
 If you are consuming the repository directly from source:

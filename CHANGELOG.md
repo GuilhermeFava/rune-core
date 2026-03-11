@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.0-beta.3 - Release runner refresh
+
+This beta follows the `0.1.0-beta.2` cut and refreshes the release runner to match the current GitHub Actions and npm publishing path.
+
+### Changed
+
+- updated GitHub Actions workflows to the current `actions/checkout` and `actions/setup-node` majors
+- upgraded the publish job to install the latest npm CLI before `npm publish`
+- kept the beta release path on the `@runerenewables/rune-core` scope
+
 ## 0.1.0-beta.2 - Scoped package and automated beta publish
 
 This beta follows the first public cut and aligns the package with the public `runerenewables` organization scope.

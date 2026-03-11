@@ -1,6 +1,6 @@
 {
   "name": "@runerenewables/rune-core",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "private": false,
   "license": "MIT",
   "description": "Transparent wind and renewable engineering core extracted from Rune.",
