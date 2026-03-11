@@ -61,7 +61,7 @@ import {
   calculateAnnualAEP,
   generateLayout,
   generatePowerCurve
-} from '@rune-engine/rune-core';
+} from '@runerenewables/rune-core';
 
 const airDensity = calculateAirDensity(15, 120);
 const powerCurve = generatePowerCurve(6000, 170, 3, 25, airDensity, 9.5, 2.1, 0.92);

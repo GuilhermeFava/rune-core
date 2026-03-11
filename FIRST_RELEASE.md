@@ -14,8 +14,8 @@ Why:
 
 ## One-time setup on npm
 
-1. Create or log into the npm account that will own `@rune-engine/rune-core`
-2. If needed, create the `@rune-engine` scope or choose an available public scope
+1. Create or log into the npm account that will own `@runerenewables/rune-core`
+2. If needed, create the `@runerenewables` organization scope or choose an available public scope
 3. In npm trusted publishing settings, add the GitHub repository:
    - owner: `GuilhermeFava`
    - repo: `rune-core`
