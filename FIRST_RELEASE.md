@@ -1,6 +1,6 @@
 # First Release Plan
 
-Target: `v0.1.0-beta.1`
+Target: `v0.1.0-beta.2`
 
 ## Recommended path
 
@@ -39,8 +39,8 @@ npm publish --access public --tag beta
 3. Tag the release:
 
 ```bash
-git tag v0.1.0-beta.1
-git push origin v0.1.0-beta.1
+git tag v0.1.0-beta.2
+git push origin v0.1.0-beta.2
 ```
 
 4. GitHub Actions publishes the package

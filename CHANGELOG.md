@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.0-beta.2 - Scoped package and automated beta publish
+
+This beta follows the first public cut and aligns the package with the public `runerenewables` organization scope.
+
+### Changed
+
+- renamed the npm package from `@rune-engine/rune-core` to `@runerenewables/rune-core`
+- documented the public npm install path and hosted beta entry point
+- aligned release docs with the organization-backed npm publishing flow
+
+### Infrastructure
+
+- release automation now publishes prerelease tags with the npm `beta` dist-tag
+- repository metadata, README, and GitHub release flow now point consistently to `runerenewables.com`
+
 ## 0.1.0-beta.1 - First public beta
 
 This is the first public beta release of `rune-core`, extracted from the Rune platform beta.
