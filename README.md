@@ -46,7 +46,19 @@ This repository does not include:
 
 ## Install
 
-This repository is publish-ready, but if you are consuming it directly from source today:
+Install the public beta directly from npm:
+
+```bash
+npm install @runerenewables/rune-core@beta
+```
+
+Or pin the exact beta:
+
+```bash
+npm install @runerenewables/rune-core@0.1.0-beta.1
+```
+
+If you are consuming the repository directly from source:
 
 ```bash
 npm install
@@ -89,7 +101,7 @@ The repository ships with:
 
 ## Status
 
-This is the first public `beta` cut of `rune-core`. The code surface is source-isolated and CI-backed, but the API may still tighten as more examples and validations are added.
+This is the first public `beta` cut of `rune-core`. The package is now available on npm as `@runerenewables/rune-core`, and the code surface is source-isolated and CI-backed, but the API may still tighten as more examples and validations are added.
 
 ## License
 

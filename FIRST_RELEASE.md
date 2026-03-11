@@ -16,23 +16,34 @@ Why:
 
 1. Create or log into the npm account that will own `@runerenewables/rune-core`
 2. If needed, create the `@runerenewables` organization scope or choose an available public scope
-3. In npm trusted publishing settings, add the GitHub repository:
+3. Publish the first beta manually once so the package page exists on npm:
+
+```bash
+cd /Users/guilhermefavaretto/Rune-engine/packages/rune-core
+npm publish --access public --tag beta
+```
+
+4. On npmjs.com, open the package page for `@runerenewables/rune-core`
+5. Open `Settings` -> `Trusted Publisher`
+6. Add the GitHub repository:
    - owner: `GuilhermeFava`
    - repo: `rune-core`
    - workflow file: `publish.yml`
    - environment: none
+7. In the same package settings, review `Publishing access` and restrict token-based publish if you want trusted publishing to be the primary path
 
 ## Release flow
 
 1. Ensure `main` is green
-2. Tag the release:
+2. Bump `package.json` and `CHANGELOG.md`
+3. Tag the release:
 
 ```bash
 git tag v0.1.0-beta.1
 git push origin v0.1.0-beta.1
 ```
 
-3. GitHub Actions publishes the package
+4. GitHub Actions publishes the package
 
 ## Token fallback
 
