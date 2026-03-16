@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.1.0-beta.4 - Hub-height Weibull scaling
+
+This beta syncs the public AEP surface with the current Rune wind engine so hub-height studies can respect explicit reference-height and roughness assumptions.
+
+### Added
+
+- exposed reference-height and roughness-aware Weibull scaling through `calculateAnnualAEP`
+- added package regression coverage for hub-height AEP sensitivity
+
+### Changed
+
+- AEP sector aggregation now scales Weibull `A` to the requested hub height before wake and terrain adjustments are applied
+- local terrain and CFD speedup corrections now compound on the hub-height-adjusted wind resource instead of the raw reference-height value
+
 ## 0.1.0-beta.3 - Release runner refresh
 
 This beta follows the `0.1.0-beta.2` cut and refreshes the release runner to match the current GitHub Actions and npm publishing path.

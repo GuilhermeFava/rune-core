@@ -173,6 +173,26 @@ export function calculateLogLaw(vRef: number, hRef: number, hHub: number, z0: nu
     return vRef * (Math.log(hHub / z0) / Math.log(hRef / z0));
 }
 
+export function scaleWeibullAForHubHeight(
+    weibullARef: number,
+    referenceHeight: number,
+    hubHeight: number,
+    roughnessLength: number
+): number {
+    if (!Number.isFinite(weibullARef) || weibullARef <= 0) {
+        return 0;
+    }
+    if (!Number.isFinite(referenceHeight) || referenceHeight <= 0 || !Number.isFinite(hubHeight) || hubHeight <= 0) {
+        return weibullARef;
+    }
+    if (!Number.isFinite(roughnessLength) || roughnessLength <= 0 || Math.abs(referenceHeight - hubHeight) < 1e-9) {
+        return weibullARef;
+    }
+
+    const adjusted = calculateLogLaw(weibullARef, referenceHeight, hubHeight, roughnessLength);
+    return Number.isFinite(adjusted) && adjusted > 0 ? adjusted : weibullARef;
+}
+
 // ============================================================================
 // POWER COEFFICIENT (Cp) MODEL
 // ============================================================================
@@ -849,7 +869,9 @@ export function calculateAnnualAEP(
     cfdSpeedup?: number[][],
     cfdBounds?: { north: number, south: number, east: number, west: number },
     cfdSpeedupBySector?: Record<number, number[][]>,
-    siteType: SiteType = 'onshore'
+    siteType: SiteType = 'onshore',
+    referenceHeight: number = 100,
+    roughnessLength: number = 0.03
 ): SimulationResult {
     let totalNetMWh = 0;
     let totalGrossMWh = 0;
@@ -866,6 +888,12 @@ export function calculateAnnualAEP(
     // Iterate Sectors
     sectors.forEach(sector => {
         const hours = HOURS_PER_YEAR * (sector.freq / normalizedFreq);
+        const hubHeightAdjustedA = scaleWeibullAForHubHeight(
+            sector.A,
+            referenceHeight,
+            hubHeight,
+            roughnessLength
+        );
 
         let sectorGrossMWh = 0;
         let sectorNetMWh = 0;
@@ -896,7 +924,7 @@ export function calculateAnnualAEP(
         });
 
         layout.forEach((layoutTurbine, turbineIndex) => {
-            let grossA = sector.A;
+            let grossA = hubHeightAdjustedA;
 
             if (sectorGrid && cfdBounds) {
                 const lat = Number.isFinite((layoutTurbine as TurbineCoord & { lat?: number }).lat)
@@ -906,7 +934,7 @@ export function calculateAnnualAEP(
                     ? (layoutTurbine as TurbineCoord & { lng: number }).lng
                     : layoutTurbine.x;
                 const speedUpFactor = getSpeedUpFromGrid(lat, lng, sectorGrid, cfdBounds);
-                grossA = sector.A * speedUpFactor;
+                grossA = hubHeightAdjustedA * speedUpFactor;
             } else if (elevationGrid && elevationGrid.length > 0) {
                 const { speedUpFactor } = calculateTerrainSpeedUp(
                     { lat: layoutTurbine.y, lon: layoutTurbine.x },
@@ -914,7 +942,7 @@ export function calculateAnnualAEP(
                     sector.angle,
                     hubHeight
                 );
-                grossA = sector.A * speedUpFactor;
+                grossA = hubHeightAdjustedA * speedUpFactor;
             }
 
             for (const bin of wakeByBin) {

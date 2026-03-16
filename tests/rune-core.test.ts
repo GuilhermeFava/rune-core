@@ -35,4 +35,46 @@ describe('rune-core package boundary', () => {
     expect(result.grossAepMWh).toBeGreaterThanOrEqual(result.netAepMWh);
     expect(result.sectorResults).toHaveLength(4);
   });
+
+  it('adjusts Weibull A for hub height using reference height and roughness inputs', () => {
+    const airDensity = calculateAirDensity(15, 0);
+    const powerCurve = generatePowerCurve(5000, 150, 3, 25, airDensity, 9, 2.1, 0.9);
+    const layout = generateLayout(1, 150, 6, 4, 'GRID', 0);
+    const sectors: WindSector[] = [
+      { angle: 270, freq: 100, A: 8.5, k: 2.0 }
+    ];
+
+    const lowerReferenceHeight = calculateAnnualAEP(
+      powerCurve,
+      sectors,
+      layout,
+      150,
+      'jensen',
+      undefined,
+      120,
+      undefined,
+      undefined,
+      undefined,
+      'onshore',
+      60,
+      0.03
+    );
+    const higherReferenceHeight = calculateAnnualAEP(
+      powerCurve,
+      sectors,
+      layout,
+      150,
+      'jensen',
+      undefined,
+      120,
+      undefined,
+      undefined,
+      undefined,
+      'onshore',
+      100,
+      0.03
+    );
+
+    expect(lowerReferenceHeight.netAepMWh).toBeGreaterThan(higherReferenceHeight.netAepMWh);
+  });
 });
